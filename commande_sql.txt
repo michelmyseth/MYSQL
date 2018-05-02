@@ -1,0 +1,55 @@
+requete tres facile :
+
+Afficher la liste des tables de la base de données.
+
+
+SHOW DATABASES;
+USE webacademie;
+show tables;
+
+Afficher la description de la table “films”.
+
+describe film;
+select titre from film;
+
+Afficher le titre des films (dans une colonne "titre film").
+
+select titre AS titre_films from film;
+
+Afficher la liste des films ayant comme genre NULL.
+
+
+SELECT titre from film where id_distrib is null;
+
+Afficher les 10 derniers films dont l’année de début d’affiche est 2000.
+
+SELECT titre, date_debut_affiche FROM film WHERE year(date_debut_affiche) = 2000 ORDER BY date_debut_affiche DESC LIMIT 10;
+
+requete moin facile :
+
+
+Afficher le titre des films qui ont comme id de genre 1 ou 2 et dont le titre commence par la lettre A. 
+
+SELECT titre FROM film WHERE titre LIKE 'a%' AND id_genre BETWEEN '1' AND '2';
+
+
+Afficher le nombre de places dans le cinéma (dans une colonne « nombre siege »).
+
+select sum(nbr_siege) as nombre_siege FROM salle;
+
+Afficher le nombre de places dans le cinéma pour chaque étage ATTENTION – On ne demande pas d’afficher les étages mais seulement le nombre de places.
+
+select sum(nbr_siege) as nombre_siege FROM salle group by etage_salle;
+
+Afficher le nom des salles dont le nombre de place est inférieure à 200.
+
+select nom_salle from salle where nbr_siege <200;
+
+
+Afficher le titre (dans une colonne « titre_cool ») des films ayant dans leur titre la chaine (‘day’) et dont le genre est « sci-fi ». 
+Indice : Inutile de faire de jointure, regardez la correspondance de la table des genres pour y retrouver l’id correspondant.
+
+SELECT titre AS 'titre_cool' FROM film WHERE titre LIKE '%day%' AND id_genre = 2;
+
+
+
